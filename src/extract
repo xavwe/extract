@@ -1,7 +1,8 @@
+#!/usr/bin/env bash
+
 show_version() {
   echo "extract v1.0.0"
 }
-
 show_help() {
   cat <<EOF
 Usage:
@@ -39,60 +40,59 @@ EOF
 
 [ -z "$1" ] && show_help && exit 0
 case "$1" in
-  -v | --version)
-    show_version
-    exit 0
-    ;;
-  -h | --help)
-    show_help
-    exit 0
-    ;;
-  *)
-    for n in "$@"
-    do
-      [ -f "$n" ] || echo "'$n' - file does not exist" && exit 1
-        case "${n%,}" in
-          *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-            tar xvf "$n"
-            ;;
-          *.lzma)
-            unlzma ./"$n"
-            ;;
-          *.bz2)
-            bunzip2 ./"$n"
-            ;;
-          *.cbr|*.rar)
-            unrar x -ad ./"$n"
-            ;;
-          *.gz)
-            gunzip ./"$n"
-            ;;
-          *.cbz|*.epub|*.zip)
-            unzip ./"$n"
-            ;;
-          *.z)
-            uncompress ./"$n"
-            ;;
-          *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-            7z x ./"$n"
-            ;;
-          *.xz)
-            unxz ./"$n"
-            ;;
-          *.exe)
-            cabextract ./"$n"
-            ;;
-          *.cpio)
-            cpio -id < ./"$n"
-            ;;
-          *.cba|*.ace)
-            unace x ./"$n"
-            ;;
-          *)
-            echo "ex: '$n' - unknown archive method"
-            exit 1
-            ;;
-        esac
-    done
-    ;;
+-v | --version)
+  show_version
+  exit 0
+  ;;
+-h | --help)
+  show_help
+  exit 0
+  ;;
+*)
+  for n in "$@"; do
+    [ ! -f "$n" ] && echo "'$n' - file does not exist" && exit 1
+    case "${n%,}" in
+    *.cbt | *.tar.bz2 | *.tar.gz | *.tar.xz | *.tbz2 | *.tgz | *.txz | *.tar)
+      tar xvf "$n"
+      ;;
+    *.lzma)
+      unlzma ./"$n"
+      ;;
+    *.bz2)
+      bunzip2 ./"$n"
+      ;;
+    *.cbr | *.rar)
+      unrar x -ad ./"$n"
+      ;;
+    *.gz)
+      gunzip ./"$n"
+      ;;
+    *.cbz | *.epub | *.zip)
+      unzip ./"$n"
+      ;;
+    *.z)
+      uncompress ./"$n"
+      ;;
+    *.7z | *.arj | *.cab | *.cb7 | *.chm | *.deb | *.dmg | *.iso | *.lzh | *.msi | *.pkg | *.rpm | *.udf | *.wim | *.xar)
+      7z x ./"$n"
+      ;;
+    *.xz)
+      unxz ./"$n"
+      ;;
+    *.exe)
+      cabextract ./"$n"
+      ;;
+    *.cpio)
+      cpio -id <./"$n"
+      ;;
+    *.cba | *.ace)
+      unace x ./"$n"
+      ;;
+    *)
+      echo "ex: '$n' - unknown archive method"
+      exit 1
+      ;;
+    esac
+  done
+  ;;
 esac
