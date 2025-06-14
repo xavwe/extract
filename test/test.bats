@@ -4,6 +4,6 @@ setup() {
 }
 
 @test "run script" {
-  run ./src/run.sh -h
-  assert_output -p 'Hello World!'
+  run ./src/extract -h
+  assert_output -p 'help'
 }
