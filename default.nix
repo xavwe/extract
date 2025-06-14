@@ -3,7 +3,7 @@
 }:
 pkgs.stdenv.mkDerivation (finalAttrs: {
   pname = "extract";
-  version = "1.0.0";
+  version = "1.0.1";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
