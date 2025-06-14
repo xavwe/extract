@@ -50,7 +50,7 @@ case "$1" in
   *)
     for n in "$@"
     do
-      [ -f "$n" ] && echo "'$n' - file does not exist" && exit 1
+      [ -f "$n" ] || echo "'$n' - file does not exist" && exit 1
         case "${n%,}" in
           *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
             tar xvf "$n"
