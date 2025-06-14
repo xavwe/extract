@@ -13,20 +13,18 @@ Options:
   -v, --version                   Show version number
 
 Supported Filename-extensions:
-  - zip
-  - rar
-  - bz2
-  - gz
-  - tar
-  - tbz2
-  - tgz
-  - Z
-  - 7z
-  - xz
-  - ex
-  - tar.bz2
-  - tar.gz
-  - tar.xz
+  - *.cbt
+  - *.tar.bz2
+  - *.tar.gz
+  - *.tar.xz
+  - *.tbz2
+  - *.tgz
+  - *.txz
+  - *.tar
+  - *.lzma
+  - *.bz2
+  - *.gz
+  - ...
 
 Examples:
   extract test.zip
@@ -61,9 +59,6 @@ case "$1" in
     *.bz2)
       bunzip2 ./"$n"
       ;;
-    *.cbr | *.rar)
-      unrar x -ad ./"$n"
-      ;;
     *.gz)
       gunzip ./"$n"
       ;;
@@ -84,9 +79,6 @@ case "$1" in
       ;;
     *.cpio)
       cpio -id <./"$n"
-      ;;
-    *.cba | *.ace)
-      unace x ./"$n"
       ;;
     *)
       echo "ex: '$n' - unknown archive method"
