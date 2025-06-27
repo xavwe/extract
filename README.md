@@ -10,14 +10,10 @@ git clone https://github.com/xavwe/extract.git
 cd extract
 ```
 
-2. Build Project
+2. Run Project
 ```
-nix build
-```
-
-3. Run Project
-```
-./result/bin/extract [archive-file]
+chmod +x src/extract
+./src/extract [archive-file]
 ```
 
 ## Demo
